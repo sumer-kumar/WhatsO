@@ -10,4 +10,6 @@
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
     <string name="signUpWithPhone">Sign up with phone</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 </resources>
