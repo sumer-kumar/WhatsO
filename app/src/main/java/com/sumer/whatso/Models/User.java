@@ -14,10 +14,10 @@ public class User {
 
     public User(){}
 
-    public User(String mail, String password, String userId) {
+    public User(String mail, String password, String username) {
         this.mail = mail;
         this.password = password;
-        this.userId = userId;
+        this.username = username;
     }
 
     public String getProfilePic() {

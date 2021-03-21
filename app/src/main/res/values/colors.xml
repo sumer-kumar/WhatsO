@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#C3cbd9</color>
     <color name="fb_color">#4267b2</color>
+    <color name="chat_block_sender">#85a4cc</color>
 </resources>

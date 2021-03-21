@@ -85,9 +85,13 @@ public class SignUpActivity extends AppCompatActivity
                         if(task.isSuccessful())
                         {
                             User user = new User(email,password,username);
-
+                            user.setUsername(username);
                             String uid = task.getResult().getUser().getUid();
+                            user.setUserId(uid);
                             database.getReference().child(USER).child(uid).setValue(user);
+                            Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                            SignUpActivity.this.finish();
+                            startActivity(intent);
 
                             Toast.makeText(SignUpActivity.this, "User created successfully", Toast.LENGTH_SHORT).show();
                         }
@@ -150,10 +154,12 @@ public class SignUpActivity extends AppCompatActivity
                             mUser.setUserId(user.getUid());
                             mUser.setUsername(user.getDisplayName());
                             mUser.setProfilePic(user.getPhotoUrl().toString());
+                            mUser.setMail(user.getEmail());
 
                             database.getReference().child(USER).child(user.getUid()).setValue(mUser);
 
                             Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                            SignUpActivity.this.finish();
                             startActivity(intent);
                             Toast.makeText(SignUpActivity.this, "Sign in as "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
                         }

@@ -39,13 +39,18 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        if(mAuth.getCurrentUser()!=null)
+        {
+            Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+            SignInActivity.this.finish();
+            startActivity(intent);
+        }
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
 
         progressDialog = new ProgressDialog(SignInActivity.this);
         progressDialog.setTitle("Signing");
@@ -101,11 +106,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        if(mAuth.getCurrentUser()!=null)
-        {
-            Intent intent = new Intent(SignInActivity.this,MainActivity.class);
-            startActivity(intent);
-        }
 
     }
 

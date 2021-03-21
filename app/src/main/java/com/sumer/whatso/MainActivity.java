@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.sumer.whatso.adapters.FragmentsAdapter;
 import com.sumer.whatso.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+
+        binding.viewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager()));
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
 
     }
 
@@ -76,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 //                        updateUI(null);
                         Intent intent = new Intent(MainActivity.this,SignInActivity.class);
+                        MainActivity.this.finish();
                         startActivity(intent);
                     }
                 });
     }
+
 }
