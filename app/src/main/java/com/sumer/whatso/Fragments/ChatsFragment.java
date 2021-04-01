@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -52,6 +53,9 @@ public class ChatsFragment extends Fragment {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     user.setUserId(dataSnapshot.getKey());
+
+                    if(user.getUserId().equals(FirebaseAuth.getInstance().getUid()))
+                        continue;
                     userList.add(user);
                 }
                 adaptor.notifyDataSetChanged();

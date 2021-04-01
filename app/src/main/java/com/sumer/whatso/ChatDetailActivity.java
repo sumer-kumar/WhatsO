@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,21 +64,6 @@ public class ChatDetailActivity extends AppCompatActivity {
         final String senderRoom = senderId + recieverId;
         final String receiverRoom = recieverId+senderId;
 
-
-        database.getReference().child(CHATS).child(senderRoom)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
         binding.ivSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +77,7 @@ public class ChatDetailActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                database.getReference().child(CHATS).child(receiverRoom).setValue(msg)
+                                database.getReference().child(CHATS).child(receiverRoom).push().setValue(msg)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -102,5 +88,24 @@ public class ChatDetailActivity extends AppCompatActivity {
                         });
             }
         });
+        database.getReference().child(CHATS).child(senderRoom)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        msgList.clear();
+                        for(DataSnapshot snap : snapshot.getChildren())
+                        {
+                            Message msg = snap.getValue(Message.class);
+//                            Toast.makeText(ChatDetailActivity.this, ""+msg.getMessage(), Toast.LENGTH_SHORT).show();
+                            msgList.add(msg);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

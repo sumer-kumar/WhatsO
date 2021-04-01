@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import com.sumer.whatso.ChatDetailActivity;
 import com.sumer.whatso.Models.User;
@@ -37,6 +39,7 @@ public class UserAdaptor extends RecyclerView.Adapter<UserAdaptor.ViewsHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewsHolder holder, int position) {
         User user = userList.get(position);
+
         //for image setting
         Picasso.get().load(user.getProfilePic()).placeholder(R.drawable.hacker).into(holder.image);
         //for name
