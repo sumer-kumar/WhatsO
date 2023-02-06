@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sumer.whatso.Models.User;
 import com.sumer.whatso.databinding.ActivitySignUpBinding;
-
+    
 public class SignUpActivity extends AppCompatActivity
 {
     public static final String USER = "User";
