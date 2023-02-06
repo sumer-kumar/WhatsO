@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.sumer.whatso.adapters.FragmentsAdapter;
 import com.sumer.whatso.databinding.ActivityMainBinding;
-
+    
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;

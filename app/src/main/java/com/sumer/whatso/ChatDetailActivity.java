@@ -25,7 +25,7 @@ import java.util.Date;
 public class ChatDetailActivity extends AppCompatActivity {
     public static final String CHATS = "chats";
     public static final String USER_ID = "userid";
-    public static final String USER_NAME = "username";
+    public static final String USER_NAME = "username";  
     public static final String USER_PROFILE_PIC = "profilepic";
     public static String senderId;
     private FirebaseDatabase database;
